@@ -1,15 +1,13 @@
 package ru.job4j.di;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class Main {
 
     public static void main(String[] args) {
-        Context context = new Context();
-        context.reg(Store.class);
-        context.reg(ConsoleInput.class);
-        context.reg(StartUI.class);
-
-        StartUI ui = context.get(StartUI.class);
-
+        ClassPathXmlApplicationContext context =
+                new ClassPathXmlApplicationContext("application.xml");
+        StartUI ui = context.getBean(StartUI.class);
         ui.add();
         ui.print();
     }
